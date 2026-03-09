@@ -1,6 +1,8 @@
+
 package io.sunshine0523.freeform.ui.freeform
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
 import android.graphics.PixelFormat
 import android.graphics.SurfaceTexture
@@ -51,6 +53,8 @@ class FreeformWindow(
         private const val TAG = "Mi-Freeform/FreeformWindow"
     }
 
+    private val freeformId = "${appConfig.packageName},${appConfig.activityName},${appConfig.userId},${System.currentTimeMillis()}"
+
     init {
         measureScale()
         if (MiFreeformServiceHolder.ping()) {
@@ -58,21 +62,12 @@ class FreeformWindow(
             handler.post { if (!addFreeformView()) destroy("init:addFreeform failed") }
         } else {
             destroy("init:service not running")
-            // NOT RUNNING !!!
         }
     }
 
-    override fun onDisplayPaused() {
-        //NOT USED
-    }
-
-    override fun onDisplayResumed() {
-        //NOT USED
-    }
-
-    override fun onDisplayStopped() {
-        //NOT USED
-    }
+    override fun onDisplayPaused() {}
+    override fun onDisplayResumed() {}
+    override fun onDisplayStopped() {}
 
     override fun onSurfaceTextureAvailable(surfaceTexture: SurfaceTexture, width: Int, height: Int) {
         MLog.i(TAG, "onSurfaceTextureAvailable width:$width height:$height")
@@ -90,9 +85,7 @@ class FreeformWindow(
         return true
     }
 
-    override fun onSurfaceTextureUpdated(surfaceTexture: SurfaceTexture) {
-        //NOT USED
-    }
+    override fun onSurfaceTextureUpdated(surfaceTexture: SurfaceTexture) {}
 
     override fun onDisplayAdd(displayId: Int) {
         MLog.i(TAG, "onDisplayAdd displayId $displayId")
@@ -104,7 +97,6 @@ class FreeformWindow(
             } else {
                 SystemServiceHolder.activityManager.registerTaskStackListener(freeformTaskStackListener)
             }
-            // pendingIntent
             if (appConfig.userId == -100) {
                 if (appConfig.pendingIntent == null) destroy("onDisplayAdd:userId=-100, but pendingIntent is null", false)
                 else {
@@ -164,9 +156,6 @@ class FreeformWindow(
         return true
     }
 
-    /**
-     * get freeform screen dimen / freeform view dimen
-     */
     fun measureScale() {
         val widthScale = min(defaultDisplayWidth, defaultDisplayHeight) * 1.0f / min(freeformConfig.width, freeformConfig.height)
         val heightScale = max(defaultDisplayWidth, defaultDisplayHeight) * 1.0f / max(freeformConfig.width, freeformConfig.height)
@@ -175,9 +164,6 @@ class FreeformWindow(
         freeformConfig.freeformHeight = (freeformConfig.height * freeformConfig.scale).roundToInt()
     }
 
-    /**
-     * Called in system handler
-     */
     @SuppressLint("WrongConstant")
     private fun addFreeformView(): Boolean {
         MLog.i(TAG, "addFreeformView")
@@ -236,9 +222,6 @@ class FreeformWindow(
         return true
     }
 
-    /**
-     * Called in system handler
-     */
     @SuppressLint("ClickableViewAccessibility")
     fun handleHangUp() {
         if (freeformConfig.isHangUp) {
@@ -272,9 +255,6 @@ class FreeformWindow(
         }
     }
 
-    /**
-     * Called in system handler
-     */
     fun toHangUp() {
         windowParams.apply {
             x = (defaultDisplayWidth / 2 - freeformConfig.hangUpWidth / 2)
@@ -288,9 +268,6 @@ class FreeformWindow(
         runCatching { windowManager.updateViewLayout(freeformLayout, windowParams) }.onFailure { MLog.e(TAG, "$it") }
     }
 
-    /**
-     * Called in uiHandler
-     */
     fun makeSureFreeformInScreen() {
         if (!freeformConfig.isHangUp) {
             val maxWidth = defaultDisplayWidth
@@ -308,10 +285,6 @@ class FreeformWindow(
         else if (windowParams.y > (defaultDisplayHeight / 2)) FreeformAnimation.moveInScreenAnimator(windowParams.y, (defaultDisplayHeight / 2), 300, false, this)
     }
 
-    /**
-     * Change freeform orientation
-     * Called in system handler
-     */
     fun changeOrientation() {
         freeformRootView.layoutParams = freeformRootView.layoutParams.apply {
             width = if (freeformConfig.isHangUp) freeformConfig.hangUpWidth else freeformConfig.width
@@ -320,7 +293,7 @@ class FreeformWindow(
     }
 
     fun getFreeformId(): String {
-        return "${appConfig.packageName},${appConfig.activityName},${appConfig.userId}"
+        return freeformId
     }
 
     fun checkWindowOnTop() {
