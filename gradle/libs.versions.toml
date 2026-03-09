@@ -84,7 +84,7 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hiddenApiRefine = { id = "dev.rikka.tools.refine", version.ref = "hidden-api-refine" }
-zygoteLoader = { id = "com.github.kr328.gradle.zygote", version.ref = "zygote-loader"}
+zygoteLoader = { id = "com.github.vova7878.ZygoteLoader", version.ref = "zygote-loader"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
