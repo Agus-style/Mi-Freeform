@@ -1,7 +1,7 @@
 [versions]
 agp = "8.6.0"
 kotlin = "1.8.10"
-ZygoteLoader = "1.0.1"
+ZygoteLoader = "master-SNAPSHOT"
 core-ktx = "1.10.1"
 ksp = "1.8.10-1.0.9"
 junit = "4.13.2"
@@ -51,25 +51,26 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation"}
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 compose-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose-livedata" }
 
-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room"}
-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room"}
-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 material = { group = "dev.rikka.rikkax.material", name = "material", version.ref = "rikka-material" }
 
-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "systemuicontroller"}
+systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "systemuicontroller" }
 
 hiddenapibypass = { module = "org.lsposed.hiddenapibypass:hiddenapibypass", version.ref = "hidden-api-bypass" }
 
-magic-library = { group = "com.github.kr328.magic", name = "library", version.ref = "magic-library"}
+magic-library = { group = "com.github.kr328.magic", name = "library", version.ref = "magic-library" }
 
-hiddenapirefineannotationprocessor = { group = "dev.rikka.tools.refine", name = "annotation-processor", version.ref = "hidden-api-refine"}
-hiddenapirefineannotation = { group = "dev.rikka.tools.refine", name = "annotation", version.ref = "hidden-api-refine"}
-hiddenapirefineruntime = { group = "dev.rikka.tools.refine", name = "runtime", version.ref = "hidden-api-refine"}
+hiddenapirefineannotationprocessor = { group = "dev.rikka.tools.refine", name = "annotation-processor", version.ref = "hidden-api-refine" }
+hiddenapirefineannotation = { group = "dev.rikka.tools.refine", name = "annotation", version.ref = "hidden-api-refine" }
+hiddenapirefineruntime = { group = "dev.rikka.tools.refine", name = "runtime", version.ref = "hidden-api-refine" }
 
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
@@ -79,13 +80,13 @@ drawablepainter = { group = "com.google.accompanist", name = "accompanist-drawab
 
 nativehelper = { group = "dev.rikka.ndk.thirdparty", name = "nativehelper", version.ref = "nativehelper" }
 cxx = { group = "dev.rikka.ndk.thirdparty", name = "cxx", version.ref = "cxx" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hiddenApiRefine = { id = "dev.rikka.tools.refine", version.ref = "hidden-api-refine" }
-zygoteLoader = { id "com.github.vova7878.ZygoteLoader" version "ZygoteLoader"}
+zygoteLoader = { id = "com.github.vova7878.ZygoteLoader", version.ref = "ZygoteLoader" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
-
